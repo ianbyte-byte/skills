@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mavis-conformance-sample",
+  "version": "0.1.0",
+  "description": "Sample Agent Plugins v1.0.0 package layout for the ianbyte-byte/mavis fork of mattpocock/skills. Demonstrates §5 manifest, §7 components, and §9 placeholder conventions.",
+  "author": {
+    "name": "IAN",
+    "url": "https://github.com/ianbyte-byte/skills"
+  },
+  "repository": "https://github.com/ianbyte-byte/skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-plugins",
+    "spec",
+    "conformance",
+    "mavis",
+    "sample"
+  ]
+}
