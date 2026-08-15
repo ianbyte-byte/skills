@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mavis-skills",
+  "version": "1.2.3",
+  "description": "Personal production Agent Plugins v1.0.0 package for the ianbyte-byte fork of mattpocock/skills. Surfaces the full skills/ tree (engineering, productivity, misc, deprecated, in-progress) to any conformant client.",
+  "author": {
+    "name": "IAN",
+    "email": "tuloong.chung@outlook.com",
+    "url": "https://github.com/ianbyte-byte/skills"
+  },
+  "homepage": "https://github.com/ianbyte-byte/skills",
+  "repository": "https://github.com/ianbyte-byte/skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-plugins",
+    "skills",
+    "engineering",
+    "productivity",
+    "tdd",
+    "code-review",
+    "grilling",
+    "mattpocock"
+  ]
+}
