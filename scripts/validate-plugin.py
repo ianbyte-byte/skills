@@ -125,6 +125,38 @@ def main() -> int:
     else:
         print("SKIP  mcp.json not present (§6.2 — clients MUST NOT error on missing location)")
 
+    # §7.1 skill discovery: every immediate child of skills/ containing a
+    # regular file named exactly SKILL.md counts as one skill. Deeper
+    # descendants are NOT skills (clients MUST NOT recurse).
+    skills_dir = PLUGIN_ROOT / "skills"
+    if skills_dir.is_dir():
+        discovered = []
+        nested = []
+        for entry in sorted(skills_dir.iterdir()):
+            if not entry.is_dir():
+                continue
+            skill_md = entry / "SKILL.md"
+            if skill_md.is_file():
+                discovered.append(entry.name)
+            else:
+                # Look one level deeper — anything that looks like a skill
+                # buried under a non-skill parent is a §7.1 violation.
+                for sub in entry.iterdir():
+                    if sub.is_dir() and (sub / "SKILL.md").is_file():
+                        nested.append(f"{entry.name}/{sub.name}")
+        if discovered:
+            print(f"PASS  §7.1 discovery: {len(discovered)} skill(s) at skills/ immediate child level")
+        else:
+            print("FAIL  §7.1 discovery: no skills/ subdirectory contains SKILL.md")
+            ok = False
+        if nested:
+            print(f"FAIL  §7.1 discovery: SKILL.md found deeper than one level — clients MUST NOT recurse:")
+            for path in nested:
+                print(f"       - skills/{path}/SKILL.md")
+            ok = False
+    else:
+        print("SKIP  skills/ not present (§6.2 — clients MUST NOT error on missing location)")
+
     print()
     print("ALL PASS" if ok else "FAILURES PRESENT")
     return 0 if ok else 1
