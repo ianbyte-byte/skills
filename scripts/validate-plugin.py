@@ -21,9 +21,10 @@ from pathlib import Path
 from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
+PLUGIN_ROOT = ROOT / "mavis-skills"
 SCHEMAS = ROOT / "scripts" / "schemas"
-PLUGIN_JSON = ROOT / "plugin.json"
-MCP_JSON = ROOT / "mcp.json"
+PLUGIN_JSON = PLUGIN_ROOT / "plugin.json"
+MCP_JSON = PLUGIN_ROOT / "mcp.json"
 
 
 def _load(name: str):
@@ -107,7 +108,7 @@ def main() -> int:
         ok &= _expect_rejected("mcp.json stdio missing command (§7.2.1)", mcp_schema, bad)
 
         # §4.1 path containment (not in JSON Schema — checked at runtime by clients)
-        plugin_root = ROOT.resolve()
+        plugin_root = PLUGIN_ROOT.resolve()
         for name, srv in mcp_data["mcpServers"].items():
             if srv.get("type") != "stdio":
                 continue
